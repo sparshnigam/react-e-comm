@@ -8,6 +8,7 @@ import { productByCategorySelector } from './reducers/productByCategorySlice';
 import { Link } from 'react-router-dom';
 import './assets/style.css';
 import { fetchCart } from './reducers/cartSlice';
+import { addToWishlist } from './reducers/wishlistSlice';
 
 const ProductDetails = () => {
 
@@ -121,7 +122,7 @@ const ProductDetails = () => {
                 <span><strong>Quantity: </strong></span>
                 {quantity<2?<i className="bi bi-dash-square-fill subtract"></i> : <i className="bi bi-dash-square-fill add" onClick={()=>setQuantity(quantity-1)}></i>}<span className='count'>{quantity}</span><i className="bi bi-plus-square-fill add" onClick={()=>setQuantity(quantity+1)}></i>
               </div>
-              <div className="buttons"> <button className="btn btn-outline-warning btn-long cart" onClick={()=> handleClick(selectProductDetails.id)}>Add to Cart</button> <button className="btn btn-warning btn-long buy">Buy it Now</button> <button className="btn btn-light wishlist"> <i className="fa fa-heart"></i> </button> </div>
+              <div className="buttons"> <button className="btn btn-outline-warning btn-long cart" onClick={()=> handleClick(selectProductDetails.id)}>Add to Cart</button> <Link to='/myCart'><button className="btn btn-warning btn-long buy" onClick={()=> handleClick(selectProductDetails.id)}>Buy it Now</button></Link> <button className="btn btn-light wishlist" onClick={()=>dispatch(addToWishlist(selectProductDetails))}> <i className="fa fa-heart"></i> </button> </div>
               <hr />
               <div className="product-description">
 

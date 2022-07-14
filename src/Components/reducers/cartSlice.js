@@ -38,11 +38,6 @@ const cartSlice = createSlice({
         .addCase(fetchCart.fulfilled,(state, action)=>{
             state.loading = false;
             state.data = action.payload;
-            // cartAdapter.setAll(state,action.payload);
-            // return {
-            //     ...state,
-            //     cartDetails: action.payload
-            // }
         })
         .addCase(fetchCart.rejected, (state, action)=>{
             state.loading = false;

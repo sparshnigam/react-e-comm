@@ -13,7 +13,7 @@ import ProductByCategoryWrapper from './context/ProductByCategoryContext';
 
 const root = document.getElementById('root');
 ReactDOM.render(
-  <React.StrictMode>
+  //<React.StrictMode>
     <Provider store={store}>
     <ProductDetailsContextWrapper>
       <ProductByCategoryWrapper>
@@ -22,8 +22,8 @@ ReactDOM.render(
       </ProductByCategoryWrapper>
     </ProductDetailsContextWrapper>
     </Provider>
-  </React.StrictMode>,
-  root
+  //</React.StrictMode>
+  ,root
 );
 
 reportWebVitals();
