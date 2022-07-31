@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom';
 import './assets/style.css';
 import { fetchCart } from './reducers/cartSlice';
 import { addToWishlist } from './reducers/wishlistSlice';
+import axios, { AxiosError } from 'axios';
+import { addToCart } from './reducers/addToCartSlice';
 
 const ProductDetails = () => {
 
@@ -21,7 +23,22 @@ const ProductDetails = () => {
   const [quantity, setQuantity] = useState(1);
   const handleClick = (e) => {
     // console.log(e, quantity);
-    dispatch(fetchCart([1,e,quantity]));
+    dispatch(fetchCart([1, e, quantity]));
+
+    // const pro = async (e) => {
+
+    //   const cart = { pId: selectProductDetails.id, quantity };
+    //   await axios.put('http://localhost:3001/cart', cart, { withCredentials: true })
+    //     .then(res => {
+    //       console.log(res.data);
+    //     })
+    //     .catch(AxiosError => {
+    //       console.log(AxiosError.response.data);
+    //     });
+    // }
+
+    // pro();
+
   }
 
 
@@ -120,9 +137,13 @@ const ProductDetails = () => {
               </div> */}
               <div>
                 <span><strong>Quantity: </strong></span>
-                {quantity<2?<i className="bi bi-dash-square-fill subtract"></i> : <i className="bi bi-dash-square-fill add" onClick={()=>setQuantity(quantity-1)}></i>}<span className='count'>{quantity}</span><i className="bi bi-plus-square-fill add" onClick={()=>setQuantity(quantity+1)}></i>
+                {quantity < 2 ? <i className="bi bi-dash-square-fill subtract"></i> : <i className="bi bi-dash-square-fill add" onClick={() => setQuantity(quantity - 1)}></i>}<span className='count'>{quantity}</span><i className="bi bi-plus-square-fill add" onClick={() => setQuantity(quantity + 1)}></i>
               </div>
-              <div className="buttons"> <button className="btn btn-outline-warning btn-long cart" onClick={()=> handleClick(selectProductDetails.id)}>Add to Cart</button> <Link to='/myCart'><button className="btn btn-warning btn-long buy" onClick={()=> handleClick(selectProductDetails.id)}>Buy it Now</button></Link> <button className="btn btn-light wishlist" onClick={()=>dispatch(addToWishlist(selectProductDetails))}> <i className="fa fa-heart"></i> </button> </div>
+              <div className="buttons">
+                <button className="btn btn-outline-warning btn-long cart" onClick={() => dispatch(addToCart({...selectProductDetails, quantity: quantity}))}>Add to Cart</button>
+                <Link to='/myCart'><button className="btn btn-warning btn-long buy" onClick={() => dispatch(addToCart({...selectProductDetails, quantity: quantity}))}>Buy it Now</button></Link>
+                <button className="btn btn-light wishlist" onClick={() => dispatch(addToWishlist(selectProductDetails))}> <i className="fa fa-heart"></i> </button>
+              </div>
               <hr />
               <div className="product-description">
 

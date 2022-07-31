@@ -12,6 +12,7 @@ dotenv.config();
 
 require(`./config/database`);
 const Register = require(`./models/registration`);
+// const Cart = require(`./models/cart`);
 
 app.use(express.json());
 app.use(cookieParser());
@@ -60,7 +61,7 @@ app.post('/register',
                     password: req.body.password
                 });
 
-                // const token = await userReg.authToken();
+                const token = await userReg.authToken();
 
                 // res.cookie("jwt", token, {
                 //     expires: new Date(Date.now() + 60000),
@@ -105,7 +106,7 @@ app.post('/login',
                 // console.log(user.tokens[0]._id.toString());
 
                 const token = await user.authToken();
-                res.cookie("e-comm", token, {
+                res.cookie("ecomm", token, {
                     httpOnly: true
                 });
 
@@ -132,6 +133,35 @@ app.post('/login',
             console.log('Error: ' + error);
         }
     });
+
+app.put('/cart', async (req, res) => {
+
+    // Register.updateOne({ 'tokens.authToken': token }, { cart: [{ ...req.body }] }, function (err, update) {
+    //     if (err) return handleError(err);
+    //     console.log('Successfully Updated');
+    //     res.json({
+    //         message: "Successfully added to cart",
+    //     })
+    // });
+    let token = req.cookies.ecomm;
+    let user = await Register.findOne({ 'tokens.authToken': token });
+
+
+    if (user) {
+        const id = req.body.pId;
+        let product = await Register.findOne({ cart: { $elemMatch: { pId: id } } });
+        if(!product){
+            // console.log(product);
+            let cart = await user.myCart(req.body);
+            if(cart){
+                res.json({
+                    message: "Successfully added to cart",
+                });
+            }
+        }
+    }
+
+});
 
 app.listen(port, () => {
     console.log(`Server running at port: ${port}/`);

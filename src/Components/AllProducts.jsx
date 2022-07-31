@@ -11,7 +11,6 @@ const AllProducts = () => {
 
 
   const products = useSelector((state) => allProductsSelector.selectAll(state));
-  //   console.log(products);
 
   const storeProducts = products.map((e) => {
     return (

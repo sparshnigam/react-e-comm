@@ -7,7 +7,7 @@ const initialState = {
 
 const wishlistAdapter = createEntityAdapter({
     selectId: (wishlist) => wishlist.id,
-})
+});
 
 const wishlistSlice = createSlice({
     name : "wishlist",

@@ -70,7 +70,7 @@ const Login = () => {
                                     <form onSubmit={login.bind(this)}>
                                         {/* <!-- Phone input --> */}
                                         <div className="form-outline mb-4">
-                                            <label className="form-label" htmlFor="form3Example2">Email or mobile number</label>
+                                            <label className="form-label" htmlFor="form3Example2">Mobile number</label>
                                             <input type="text" id="form3Example2" className="form-control" placeholder='Mobile number' name='phone' value={user.phone} onChange={handleChange} required />
                                         </div>
 

@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 
 const cartSchema = new mongoose.Schema({
-    _id:{
-        type:String,
-    },
+    
+    products: [{
+        any: {}
+    }]
 });
 
 const cart = mongoose.model('cart', cartSchema);

@@ -16,7 +16,7 @@ const Categories = () => {
                     <div className="card p-1">
                         <div className="d-flex justify-content-between align-items-center p-2">
                             <div className="flex-column lh-1 imagename"> <span>{e.charAt(0).toUpperCase() + e.slice(1)}</span> </div>
-                            <div> <img src="https://source.unsplash.com/user/nikhilmitra/OiUDGKHHuN0" height="100" width="100" /> </div>
+                            <div> <img src="https://source.unsplash.com/user/nikhilmitra/OiUDGKHHuN0" alt='img' height="100" width="100" /> </div>
                         </div>
                     </div>
                 </Link>

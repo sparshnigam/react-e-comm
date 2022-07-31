@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 // import './assets/style.css';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -11,19 +11,19 @@ import Routing from './Routing';
 import ProductDetailsContextWrapper from './context/ProductDetailsContext';
 import ProductByCategoryWrapper from './context/ProductByCategoryContext';
 
-const root = document.getElementById('root');
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
   //<React.StrictMode>
-    <Provider store={store}>
+  <Provider store={store}>
     <ProductDetailsContextWrapper>
       <ProductByCategoryWrapper>
-        <Routing />
-        <App />
+          <Routing />
+          <App />
       </ProductByCategoryWrapper>
     </ProductDetailsContextWrapper>
-    </Provider>
+  </Provider>
   //</React.StrictMode>
-  ,root
+
 );
 
 reportWebVitals();

@@ -9,6 +9,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 import cartReducer from "./reducers/cartSlice";
 import wishlistReducer from "./reducers/wishlistSlice";
+import addToCartReducer  from "./reducers/addToCartSlice";
 
 const store = configureStore({
     reducer: {
@@ -21,6 +22,7 @@ const store = configureStore({
         productByCategory: productByCategoryReducer,
         cart: cartReducer,
         wishlist: wishlistReducer,
+        addToCart: addToCartReducer,
     },
     middleware: [thunk],
 });

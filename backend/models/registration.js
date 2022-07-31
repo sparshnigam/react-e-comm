@@ -36,6 +36,11 @@ const userSchema = new mongoose.Schema({
         //     type: Date,
         //     default: new Date(Date.now() + 60000),
         // },
+    },
+
+    cart: {
+        type:Array, 
+        default: []
     }
     
 });
@@ -60,6 +65,17 @@ userSchema.methods.authToken = async function () {
         return token;
     } catch (error) {
         console.log(`Token error`+error);
+    }
+}
+
+userSchema.methods.myCart = async function (prop) {
+    try{
+        this.cart = this.cart.concat({...prop});;
+        if(await this.save()){
+            return true;
+        }
+    }catch(err){
+        console.log('Cart error: '+err);
     }
 }
 
